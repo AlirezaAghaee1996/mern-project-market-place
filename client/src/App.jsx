@@ -5,9 +5,11 @@ import About from './pages/About'
 import Profile from './pages/Profile'
 import SignOut from './pages/SignOut'
 import SignIn from './pages/SignIn'
+import Header from './Components/Header'
 export default function App() {
   return (
     <>
+    <Header/>
       <Routes>
         <Route exact path='/' element={<Home/>}/>
         <Route exact path='/about' element={<About/>}/>
