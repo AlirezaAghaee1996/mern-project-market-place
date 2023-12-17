@@ -1,5 +1,4 @@
-import React from 'react'
-import { Routes,Route,Navigate } from 'react-router-dom'
+import { Routes,Route } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import Profile from './pages/Profile'
@@ -17,6 +16,7 @@ export default function App() {
         <Route exact path='/sign-out' element={<SignOut/>}/>
         <Route exact path='/sing-in' element={<SignIn/>}/>
       </Routes>
+
     </>
   )
 }
