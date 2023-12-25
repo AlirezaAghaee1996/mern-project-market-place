@@ -1,4 +1,4 @@
-import React,{useState,useDebugValue} from 'react'
+import {useState,useDebugValue} from 'react'
 
 export default function useFormFields() {
     const [fields, setFields] = useState();

@@ -1,13 +1,28 @@
-
+import useFormFields from "../../utils/useFormFields"
 export default function SignUp() {
+  const [fields,handleChange]=useFormFields()
+  const handleSubmit=async(e)=>{
+    e.preventDefault()
+    try{
+      const res=await fetch('http://localhost:3000/api/auth/signup',{
+        method:'POST',
+        headers:{
+          'Content-type':'application/json'
+        },body:JSON.stringify(fields)
+      })
+      const data=await res.json()
+    }catch(err){
+      
+    }
+  }
   return (
-    <div className="p-3 mx-auto max-w-lg">
-      <h1 className="text-3xl text-center my-7 font-semibold">Sign Up</h1>
-      <form className="flex flex-col gap-4">
-      <input type="text" className="border p-3 rounded-lg" placeholder="Username"/>
-      <input type="email" className="border p-3 rounded-lg" placeholder="Email"/>
-      <input type="password" className="border p-3 rounded-lg" placeholder="Password"/>
-      <button className="bg-sky-900 text-white">Sign Up</button>
+    <div className="p-11 mx-auto max-w-lg bg-stone-50 rounded-3xl mt-3">
+      <h1 className="text-3xl text-center mb-7 font-semibold">Sign Up</h1>
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+      <input onChange={handleChange} name="username" type="text" className="border p-3 rounded-lg" placeholder="Username"/>
+      <input onChange={handleChange} name="email" type="email" className="border p-3 rounded-lg" placeholder="Email"/>
+      <input onChange={handleChange} name="password" type="password" className="border p-3 rounded-lg" placeholder="Password"/>
+      <button type="submit" className="bg-sky-900 py-5 text-white rounded-lg">Sign Up</button>
       </form>
     </div>
   )
