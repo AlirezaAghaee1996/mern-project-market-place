@@ -14,6 +14,7 @@ export const signUp=async(req,res,next)=>{
     }catch(err){
         next(err)
     }
+}
+export const  signIn=(req,res)=>{
     
-
 }

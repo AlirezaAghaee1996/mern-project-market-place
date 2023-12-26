@@ -1,6 +1,10 @@
+import { useState } from "react"
 import useFormFields from "../../utils/useFormFields"
+import {Link} from 'react-router-dom'
+import Toast from "../../Components/Toast/Toast"
 export default function SignUp() {
   const [fields,handleChange]=useFormFields()
+  const [err,setErr]=useState()
   const handleSubmit=async(e)=>{
     e.preventDefault()
     try{
@@ -12,7 +16,7 @@ export default function SignUp() {
       })
       const data=await res.json()
     }catch(err){
-      
+      setErr(err)
     }
   }
   return (
@@ -23,7 +27,12 @@ export default function SignUp() {
       <input onChange={handleChange} name="email" type="email" className="border p-3 rounded-lg" placeholder="Email"/>
       <input onChange={handleChange} name="password" type="password" className="border p-3 rounded-lg" placeholder="Password"/>
       <button type="submit" className="bg-sky-900 py-5 text-white rounded-lg">Sign Up</button>
+        <Link className="no-underline " to={'/sign-in'}>
+        Do You have a account?
+          <span className="text-blue-600">clicked</span>
+        </Link>
       </form>
+      {err&& <Toast type="warning" message={err}/>}
     </div>
   )
 }
