@@ -1,9 +1,10 @@
 import { useState } from "react"
 import useFormFields from "../../utils/useFormFields"
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import Toast from "../../Components/Toast/Toast"
 export default function SignUp() {
   const [fields,handleChange]=useFormFields()
+  const navigate=useNavigate()
   const [err,setErr]=useState()
   const handleSubmit=async(e)=>{
     e.preventDefault()
@@ -15,6 +16,7 @@ export default function SignUp() {
         },body:JSON.stringify(fields)
       })
       const data=await res.json()
+      navigate('/sign-in')
     }catch(err){
       setErr(err)
     }
